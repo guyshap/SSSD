@@ -3,7 +3,7 @@
   Copyright (c) 2010 Guy Shapiro
   Version: 15.8.10
   
-  This library was 00 by the code of Quazar & Busaboi 
+  This library was inspired by the code of Quazar & Busaboi 
   (http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1247533060/2#2)
   
   The part reference manual can be found on 
@@ -31,7 +31,6 @@
   TODO: 
   - Remove the dependency on the SPI library.
   - Add lgpl to the cpp file
-  - Run spell checker. 
 */
 #ifndef Sssd_h
 #define Sssd_h
