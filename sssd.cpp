@@ -40,6 +40,7 @@ ss_pin(sssd_ss_pin)
   Spi.mode((1<<SPR1));
   digitalWrite(ss_pin, HIGH);
   sendReset();
+  setDots(0);
 }
 
 void SSSD::sendReset()
@@ -47,7 +48,6 @@ void SSSD::sendReset()
   digitalWrite(ss_pin, LOW);
   Spi.transfer(0x76);
   digitalWrite(ss_pin, HIGH);
-  dots_status = 0;
 }
 
 void SSSD::writeNumbers(byte digit1, byte digit2, byte digit3, byte digit4)
