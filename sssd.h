@@ -3,10 +3,10 @@
   Copyright (c) 2010 Guy Shapiro
   Version: 15.8.10
   
-  This library was inspierd by the code of Quazar & Busaboi 
+  This library was 00 by the code of Quazar & Busaboi 
   (http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1247533060/2#2)
   
-  The part referance manual can be found on 
+  The part reference manual can be found on 
   http://www.sparkfun.com/datasheets/Components/LED/7-Segment/SFE-0012-DS-7segmentSerial-v41.pdf
 
 
@@ -29,8 +29,6 @@
 
 /*
   TODO: 
-  - Usage documentation
-  - Reset command
   - Remove the dependency on the SPI library.
   - Add lgpl to the cpp file
   - Run spell checker. 
@@ -59,13 +57,33 @@
 class SSSD
 {
   public:
+    /* Constructor - sssd_ss_pin is the number of the arduino pin that connected to the display Slave Select (SCN) */
     SSSD(byte sssd_ss_pin=SS_PIN);
-    void writeNumbers(byte digit1, byte digit2, byte digit3, byte digit4);
-    void changeDots(byte flags);
-    void setDots(byte flags);
-    void setBrightness(byte level);
-    void setSegments(byte digit, byte segments);
+    
+    /* Send the rest command to the display. */
     void sendReset();
+    
+    /* Write digits to the display. Each digit can be nibble (0-9,0xa-0xf) or ASCII representation (E.G. 'A','a').
+    For a black digit (all the leds off), pass SSSD_BLANK_DIGIT.
+    For full list of available chars see the reference manual. */
+    void writeNumbers(byte digit1, byte digit2, byte digit3, byte digit4);
+    
+    /*
+    Set the dots on the display to specific status.
+    */
+    void setDots(byte flags);
+    void changeDots(byte flags);
+    
+    /*
+    Set the brightness of the display. level can be between 0 to 254. Lower number means brighter display.
+    */
+    void setBrightness(byte level);
+    
+    /*
+    control specific segments. digit is the index of the digit to control. segments is flags byte of the segments.
+    */
+    void setSegments(byte digit, byte segments);
+    
   private:
     SPI mySpi;
     byte dots_status;
